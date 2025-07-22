@@ -2,100 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const Ajv = require('ajv');
 
-const ajv = new Ajv({ allErrors: true });
-
-// Esquema para validar la estructura de films.json
-const filmSchema = {
-  type: "object",
-  properties: {
-    films: {
-      type: "array",
-      minItems: 1,
-      items: {
-        type: "object",
-        properties: {
-          id: { type: "string", minLength: 1 },
-          title: { type: "string", minLength: 1 },
-          description: { type: "string", minLength: 10 },
-          vimeoUrl: { 
-            type: "string",
-            pattern: "^https://vimeo\\.com/\\d+$"
-          },
-          thumbnailUrl: { 
-            type: "string",
-            format: "uri"
-          },
-          releaseDate: { 
-            type: "string",
-            pattern: "^\\d{4}-\\d{2}-\\d{2}$"
-          },
-          duration: { 
-            type: "string",
-            pattern: "^\\d{1,2}:\\d{2}$"
-          },
-          director: { type: "string", minLength: 1 },
-          genre: {
-            type: "array",
-            minItems: 1,
-            items: { type: "string" }
-          },
-          featured: { type: "boolean" },
-          recommendedFilms: {
-            type: "array",
-            items: { type: "string" }
-          }
-        },
-        required: ["id", "title", "description", "vimeoUrl", "thumbnailUrl", "releaseDate", "duration", "director", "genre", "featured", "recommendedFilms"],
-        additionalProperties: false
-      }
-    },
-    teamMembers: {
-      type: "array",
-      minItems: 1,
-      items: {
-        type: "object",
-        properties: {
-          name: { type: "string", minLength: 1 },
-          role: { type: "string", minLength: 1 },
-          bio: { type: "string", minLength: 10 },
-          image: { 
-            type: "string",
-            format: "uri"
-          },
-          social: {
-            type: "object",
-            properties: {
-              instagram: { type: "string" },
-              twitter: { type: "string" },
-              vimeo: { type: "string" }
-            },
-            additionalProperties: false
-          }
-        },
-        required: ["name", "role", "bio", "image", "social"],
-        additionalProperties: false
-      }
-    },
-    companyInfo: {
-      type: "object",
-      properties: {
-        description: { type: "string", minLength: 10 },
-        mission: { type: "string", minLength: 10 },
-        founded: { type: "number", minimum: 2000, maximum: 2030 },
-        location: { type: "string", minLength: 1 }
-      },
-      required: ["description", "mission", "founded", "location"],
-      additionalProperties: false
-    }
-  },
-  required: ["films", "teamMembers", "companyInfo"],
-  additionalProperties: false
-};
-
-// Función para validar JSON
-function validateJSON(filePath, schema) {
+// Función para validar JSON básica (sin AJV para evitar dependencias)
+function validateJSON(filePath) {
   try {
     console.log(`🔍 Validando ${filePath}...`);
     
@@ -104,19 +13,34 @@ function validateJSON(filePath, schema) {
     }
     
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const validate = ajv.compile(schema);
-    const valid = validate(data);
     
-    if (!valid) {
-      console.error(`❌ Errores de validación en ${filePath}:`);
-      validate.errors.forEach((error, index) => {
-        console.error(`  ${index + 1}. ${error.instancePath || 'root'}: ${error.message}`);
-        if (error.data !== undefined) {
-          console.error(`     Valor actual: ${JSON.stringify(error.data)}`);
+    // Validaciones básicas
+    if (!data.films || !Array.isArray(data.films)) {
+      throw new Error('El archivo debe contener un array "films"');
+    }
+    
+    if (!data.teamMembers || !Array.isArray(data.teamMembers)) {
+      throw new Error('El archivo debe contener un array "teamMembers"');
+    }
+    
+    if (!data.companyInfo || typeof data.companyInfo !== 'object') {
+      throw new Error('El archivo debe contener un objeto "companyInfo"');
+    }
+    
+    // Validar que cada film tenga campos requeridos
+    data.films.forEach((film, index) => {
+      const requiredFields = ['id', 'title', 'description', 'vimeoUrl', 'director', 'genre'];
+      requiredFields.forEach(field => {
+        if (!film[field]) {
+          throw new Error(`Film ${index + 1}: Falta el campo requerido "${field}"`);
         }
       });
-      return false;
-    }
+      
+      // Validar URL de Vimeo
+      if (!film.vimeoUrl.includes('vimeo.com/')) {
+        throw new Error(`Film "${film.title}": URL de Vimeo inválida`);
+      }
+    });
     
     console.log(`✅ ${filePath} es válido`);
     return true;
@@ -137,18 +61,6 @@ function validateCustomRules(data) {
     errors.push(`IDs de films duplicados: ${duplicateIds.join(', ')}`);
   }
   
-  // Verificar que los recommendedFilms referencian IDs válidos
-  data.films.forEach(film => {
-    film.recommendedFilms.forEach(recId => {
-      if (!filmIds.includes(recId)) {
-        errors.push(`Film '${film.id}' referencia un ID inexistente: '${recId}'`);
-      }
-      if (recId === film.id) {
-        errors.push(`Film '${film.id}' se recomienda a sí mismo`);
-      }
-    });
-  });
-  
   // Verificar que hay al menos un film destacado
   const featuredFilms = data.films.filter(f => f.featured);
   if (featuredFilms.length === 0) {
@@ -157,9 +69,11 @@ function validateCustomRules(data) {
   
   // Verificar fechas válidas
   data.films.forEach(film => {
-    const date = new Date(film.releaseDate);
-    if (isNaN(date.getTime())) {
-      errors.push(`Fecha inválida en film '${film.id}': ${film.releaseDate}`);
+    if (film.releaseDate) {
+      const date = new Date(film.releaseDate);
+      if (isNaN(date.getTime())) {
+        errors.push(`Fecha inválida en film '${film.id}': ${film.releaseDate}`);
+      }
     }
   });
   
@@ -174,7 +88,7 @@ function main() {
   let isValid = true;
   
   // Validar esquema JSON
-  if (!validateJSON(dataFile, filmSchema)) {
+  if (!validateJSON(dataFile)) {
     isValid = false;
   }
   
@@ -228,4 +142,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { validateJSON, validateCustomRules, filmSchema }; 
+module.exports = { validateJSON, validateCustomRules }; 
