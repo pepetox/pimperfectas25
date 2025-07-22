@@ -1,0 +1,433 @@
+/* Estilos personalizados adicionales para Producciones Imperfecta */
+
+/* Responsive design mejorado */
+@media (max-width: 768px) {
+  /* Header responsivo */
+  .px-40 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Grid responsivo en móviles */
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Navegación responsiva */
+  header .flex.flex-1 .flex.items-center {
+    display: none;
+  }
+  
+  /* Búsqueda más pequeña en móvil */
+  #search-input {
+    max-width: 200px !important;
+  }
+  
+  /* Página de detalle responsive */
+  .lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Metadatos en móvil */
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Navegación de films en móvil */
+  .film-navigation {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  /* Botones de acción responsive */
+  .flex-wrap {
+    flex-direction: column !important;
+  }
+  
+  /* Breadcrumbs responsive */
+  nav.flex {
+    font-size: 0.75rem !important;
+  }
+  
+  /* About Us responsive */
+  .lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Grid del equipo en móvil */
+  .md\:grid-cols-2.lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Formulario de contacto responsive */
+  .lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Una sola columna en móviles muy pequeños */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Hero section responsivo */
+  .min-h-80 {
+    min-height: 200px !important;
+  }
+  
+  /* Título más pequeño en móvil */
+  h1.text-4xl {
+    font-size: 2rem !important;
+    line-height: 2.5rem !important;
+  }
+  
+  /* Padding reducido en móvil */
+  .py-8 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Hero About Us en móvil */
+  .text-4xl.md\:text-5xl {
+    font-size: 2rem !important;
+  }
+  
+  .p-8.md\:p-12 {
+    padding: 1rem !important;
+  }
+}
+
+/* Animaciones suaves */
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+.group:hover .group-hover\:bg-opacity-30 {
+  background-opacity: 0.3;
+}
+
+/* Mejoras de accesibilidad */
+input:focus, button:focus {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+}
+
+/* Transiciones suaves para todos los elementos interactivos */
+a, button, .group > div {
+  transition: all 0.3s ease;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #293038;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Smooth loading animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.film-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos específicos para la página de detalle */
+.film-detail-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Player de Vimeo responsive */
+.aspect-video iframe {
+  border-radius: 0.5rem;
+}
+
+/* Hover effects para recommended films */
+.recommended-film {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.recommended-film:hover {
+  transform: translateY(-4px);
+}
+
+/* Navegación entre films */
+.film-navigation {
+  transition: all 0.3s ease;
+}
+
+/* Botones de compartir y acción */
+.action-button {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Notificación de copia al portapapeles */
+.copy-notification {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Breadcrumbs hover */
+nav a:hover {
+  text-decoration: none;
+}
+
+/* Error states */
+.error-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Focus states mejorados */
+iframe:focus {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+}
+
+/* Metadatos grid */
+.metadata-grid > div {
+  transition: transform 0.2s ease;
+}
+
+.metadata-grid > div:hover {
+  transform: translateY(-1px);
+}
+
+/* ==== ESTILOS ESPECÍFICOS ABOUT US ==== */
+
+/* About container */
+.about-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Team member cards */
+.team-member-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+}
+
+.team-member-card img {
+  transition: all 0.3s ease;
+}
+
+.team-member-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Formulario de contacto */
+.contact-form {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Input focus states mejorados */
+input:focus, textarea:focus, select:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Botón de envío */
+button[type="submit"] {
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Notificaciones */
+.notification-slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Gradientes del hero */
+.bg-gradient-to-r {
+  background: linear-gradient(
+    90deg,
+    #111418 0%,
+    #1a1d23 50%,
+    #111418 100%
+  );
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.2) 0%,
+    rgba(147, 51, 234, 0.2) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+/* Valores section */
+.values-section {
+  position: relative;
+}
+
+.values-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(59, 130, 246, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Iconos sociales hover */
+.social-icons a {
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* Links hover effects */
+a[href^="mailto:"],
+a[href^="tel:"] {
+  transition: color 0.3s ease;
+}
+
+a[href^="mailto:"]:hover,
+a[href^="tel:"]:hover {
+  color: #60a5fa !important;
+}
+
+/* Mission section animations */
+.mission-text {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.values-card {
+  animation: fadeInRight 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Contact info icons */
+.contact-info svg {
+  transition: transform 0.3s ease;
+}
+
+.contact-info:hover svg {
+  transform: scale(1.1);
+}
+
+/* Form validation states */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Placeholder animations */
+input::placeholder,
+textarea::placeholder {
+  transition: opacity 0.3s ease;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* Loading spinner para formulario */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+} 

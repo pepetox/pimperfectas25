@@ -1,0 +1,52 @@
+{
+  "name": "producciones-imperfecta-website",
+  "version": "1.0.0",
+  "description": "Sitio web oficial de Producciones Imperfecta - Cortometrajes independientes",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "npm run validate && npm run minify",
+    "validate": "node scripts/validate-data.js",
+    "minify": "npm run minify:css && npm run minify:js",
+    "minify:css": "cleancss -o assets/css/styles.min.css assets/css/styles.css",
+    "minify:js": "terser assets/js/*.js -o assets/js/bundle.min.js --compress --mangle",
+    "lint": "eslint assets/js/*.js",
+    "lint:fix": "eslint assets/js/*.js --fix",
+    "test": "npm run validate && npm run lint",
+    "serve": "python3 -m http.server 8000",
+    "clean": "rm -f assets/css/*.min.css assets/js/*.min.js"
+  },
+  "keywords": [
+    "cortometrajes",
+    "cine",
+    "productora",
+    "video",
+    "vimeo",
+    "github-pages"
+  ],
+  "author": "Producciones Imperfecta",
+  "license": "MIT",
+  "homepage": "https://github.com/username/producciones_imperfectas_25#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/producciones_imperfectas_25.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/producciones_imperfectas_25/issues"
+  },
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.56.0",
+    "terser": "^5.26.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 

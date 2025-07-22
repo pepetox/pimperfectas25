@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://produccionesimperfecta.github.io/sitemap.xml
+
+# Directorios permitidos
+Allow: /assets/
+Allow: /data/
+Allow: /*.html
+Allow: /*.js
+Allow: /*.css
+Allow: /*.json
+
+# Archivos específicos
+Allow: /manifest.json
+
+# Crawl delay (cortesía)
+Crawl-delay: 1
+
+# Directrices específicas para bots principales
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Información adicional
+# Sitio web: https://produccionesimperfecta.github.io
+# Contacto: contacto@produccionesimperfectas.com 

@@ -1,0 +1,62 @@
+{
+  "films": [
+    {
+      "id": "ornito-al-horno-3-uno-y-trina",
+      "title": "Ornito al Horno 3. Uno y trina",
+      "description": "Un cortometraje sobre la vida de un ornito que se enfrenta a la realidad de la vida cotidiana.",
+      "vimeoUrl": "https://vimeo.com/261196891",
+      "thumbnailUrl": "https://picsum.photos/320/180?random=1",
+      "releaseDate": "2018-03-21",
+      "duration": "8:30",
+      "director": "Producciones Imperfectas",
+      "genre": ["Drama", "Experimental"],
+      "featured": true,
+      "recommendedFilms": ["un-libro-un-arbol-un-hijo", "call-ball"]
+    },
+    {
+      "id": "un-libro-un-arbol-un-hijo",
+      "title": "Un libro, un árbol, un hijo",
+      "description": "Un cortometraje sobre la vida y los recuerdos de un padre.",
+      "vimeoUrl": "https://vimeo.com/197093004",
+      "thumbnailUrl": "https://picsum.photos/320/180?random=2",
+      "releaseDate": "2016-12-21",
+      "duration": "8:30",
+      "director": "Producciones Imperfectas",
+      "genre": ["Drama", "Familiar"],
+      "featured": false,
+      "recommendedFilms": ["ornito-al-horno-3-uno-y-trina", "call-ball"]
+    },
+    {
+      "id": "call-ball",
+      "title": "Call Ball",
+      "description": "Un cortometraje sobre el uso del lenguaje y sus consecuencias.",
+      "vimeoUrl": "https://vimeo.com/131824317",
+      "thumbnailUrl": "https://picsum.photos/320/180?random=3",
+      "releaseDate": "2015-06-15",
+      "duration": "12:45",
+      "director": "Producciones Imperfectas",
+      "genre": ["Drama", "Experimental"],
+      "featured": false,
+      "recommendedFilms": ["ornito-al-horno-3-uno-y-trina", "un-libro-un-arbol-un-hijo"]
+    }
+  ],
+  "teamMembers": [
+    {
+      "name": "Equipo Producciones Imperfectas",
+      "role": "Directores & Creadores",
+      "bio": "Equipo creativo dedicado a explorar narrativas únicas a través del cortometraje independiente.",
+      "image": "https://picsum.photos/200/200?random=10",
+      "social": {
+        "instagram": "@produccionesimperfectas",
+        "twitter": "@prodimperfectas",
+        "vimeo": "vimeo.com/produccionesimperfectas"
+      }
+    }
+  ],
+  "companyInfo": {
+    "description": "Producciones Imperfectas es una productora independiente dedicada a crear cortometrajes que exploran la condición humana desde perspectivas únicas y no convencionales.",
+    "mission": "Creemos en la belleza de lo imperfecto y en el poder de las historias pequeñas para generar grandes emociones.",
+    "founded": 2015,
+    "location": "España"
+  }
+} 

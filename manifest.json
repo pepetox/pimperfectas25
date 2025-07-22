@@ -1,0 +1,117 @@
+{
+  "name": "Producciones Imperfecta",
+  "short_name": "Imperfecta",
+  "description": "Productora independiente de cortometrajes que explora la condición humana desde perspectivas únicas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111418",
+  "theme_color": "#111418",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "dir": "ltr",
+  
+  "icons": [
+    {
+      "src": "assets/images/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  
+  "categories": [
+    "entertainment",
+    "video",
+    "film",
+    "media"
+  ],
+  
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Página principal mostrando el catálogo de cortometrajes"
+    },
+    {
+      "src": "assets/images/screenshot-2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Vista móvil de la página de detalle de cortometraje"
+    }
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Ver Cortometrajes",
+      "short_name": "Films",
+      "description": "Explorar el catálogo completo de cortometrajes",
+      "url": "/index.html",
+      "icons": [
+        {
+          "src": "assets/images/shortcut-film.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Sobre Nosotros",
+      "short_name": "About",
+      "description": "Conocer al equipo y la historia de Producciones Imperfecta",
+      "url": "/about.html",
+      "icons": [
+        {
+          "src": "assets/images/shortcut-about.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+} 
