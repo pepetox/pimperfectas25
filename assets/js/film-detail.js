@@ -20,7 +20,7 @@ function renderHeader() {
             <path d="M44 4H4V44H44V4Z" fill="currentColor"></path>
           </svg>
         </div>
-        <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Producciones Imperfecta</h2>
+        <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Producciones Imperfectas</h2>
       </div>
       <div class="flex flex-1 justify-end gap-8">
         <div class="flex items-center gap-9">
@@ -194,7 +194,7 @@ window.shareFilm = function(filmId, title) {
   
   if (navigator.share) {
     navigator.share({
-      title: `${title} - Producciones Imperfecta`,
+      title: `${title} - Producciones Imperfectas`,
       text: `Mira este cortometraje: ${title}`,
       url: url
     });
@@ -289,7 +289,7 @@ function renderPage(film) {
   handleKeyboardNavigation(film.id);
   
   // Actualizar título de la página
-  document.title = `${film.title} - Producciones Imperfecta`;
+  document.title = `${film.title} - Producciones Imperfectas`;
   
   // Añadir meta tags dinámicos para SEO
   updateMetaTags(film);
@@ -297,14 +297,14 @@ function renderPage(film) {
 
 // Actualizar meta tags para SEO
 function updateMetaTags(film) {
-  document.title = `${film.title} - Producciones Imperfecta`;
+  document.title = `${film.title} - Producciones Imperfectas`;
   
   updateOrCreateMetaTag('name', 'description', `${film.description} Dirigido por ${film.director}. Duración: ${film.duration}.`);
-  updateOrCreateMetaTag('property', 'og:title', `${film.title} - Producciones Imperfecta`);
+  updateOrCreateMetaTag('property', 'og:title', `${film.title} - Producciones Imperfectas`);
   updateOrCreateMetaTag('property', 'og:description', film.description);
   updateOrCreateMetaTag('property', 'og:url', `${window.location.origin}${window.location.pathname}${window.location.search}`);
   updateOrCreateMetaTag('property', 'og:image', film.thumbnailUrl);
-  updateOrCreateMetaTag('name', 'twitter:title', `${film.title} - Producciones Imperfecta`);
+  updateOrCreateMetaTag('name', 'twitter:title', `${film.title} - Producciones Imperfectas`);
   updateOrCreateMetaTag('name', 'twitter:description', film.description);
   updateOrCreateMetaTag('name', 'twitter:image', film.thumbnailUrl);
 }

@@ -13,7 +13,7 @@ function renderHeader() {
             <path d="M44 4H4V44H44V4Z" fill="currentColor"></path>
           </svg>
         </div>
-        <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Producciones Imperfecta</h2>
+        <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Producciones Imperfectas</h2>
       </div>
       <div class="flex flex-1 justify-end gap-8">
         <div class="flex items-center gap-9">

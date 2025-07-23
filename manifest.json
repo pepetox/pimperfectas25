@@ -1,6 +1,6 @@
 {
-  "name": "Producciones Imperfecta",
-  "short_name": "Imperfecta",
+  "name": "Producciones Imperfectas",
+  "short_name": "Imperfectas",
   "description": "Productora independiente de cortometrajes que explora la condición humana desde perspectivas únicas.",
   "start_url": "/",
   "display": "standalone",
@@ -103,7 +103,7 @@
     {
       "name": "Sobre Nosotros",
       "short_name": "About",
-      "description": "Conocer al equipo y la historia de Producciones Imperfecta",
+      "description": "Conocer al equipo y la historia de Producciones Imperfectas",
       "url": "/about.html",
       "icons": [
         {
