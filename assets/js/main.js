@@ -3,6 +3,7 @@ import { fetchJSON, render } from "./utils.js";
 
 let allFilms = [];
 let filteredFilms = [];
+let currentSearchQuery = '';
 
 function renderHeader() {
   return `
@@ -65,9 +66,22 @@ function renderFilmGrid(films, showAll = false) {
   const displayFilms = showAll ? films : films.slice(0, 6);
   const hasMore = films.length > 6 && !showAll;
   
+  if (displayFilms.length === 0) {
+    return `
+      <div class="flex flex-col gap-4">
+        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Resultados de búsqueda</h2>
+        <div class="text-center py-8">
+          <p class="text-[#9ca3af] text-lg">No se encontraron cortometrajes que coincidan con tu búsqueda.</p>
+        </div>
+      </div>
+    `;
+  }
+  
   return `
     <div class="flex flex-col gap-4">
-      <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Catálogo</h2>
+      <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+        ${currentSearchQuery ? `Resultados (${displayFilms.length})` : 'Catálogo'}
+      </h2>
       <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 film-grid">
         ${displayFilms.map(film => renderFilmCard(film)).join('')}
       </div>
@@ -83,6 +97,8 @@ function renderFilmGrid(films, showAll = false) {
 }
 
 function handleSearch(query) {
+  currentSearchQuery = query;
+  
   if (!query.trim()) {
     filteredFilms = [...allFilms];
   } else {
@@ -116,7 +132,12 @@ function renderPage(showAll = false) {
                       <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
                     </svg>
                   </div>
-                  <input id="search-input" placeholder="Busca por título, director o género..." class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-transparent text-sm font-normal leading-normal placeholder:text-[#9ca3af]" />
+                  <input 
+                    id="search-input" 
+                    value="${currentSearchQuery}" 
+                    placeholder="Busca por título, director o género..." 
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-transparent text-sm font-normal leading-normal placeholder:text-[#9ca3af]" 
+                  />
                 </div>
               </div>
             </div>
@@ -129,10 +150,26 @@ function renderPage(showAll = false) {
   `;
   render(app, html);
 
+  // Re-añadir event listeners después del render
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+    // Mantener el foco si había una búsqueda activa
+    if (currentSearchQuery) {
+      searchInput.focus();
+      // Colocar el cursor al final
+      searchInput.setSelectionRange(searchInput.value.length, searchInput.value.length);
+    }
+    
+    searchInput.addEventListener('input', (e) => {
+      handleSearch(e.target.value);
+    });
+    
+    // También escuchar el evento 'keyup' para mayor responsividad
+    searchInput.addEventListener('keyup', (e) => {
+      handleSearch(e.target.value);
+    });
   }
+  
   const loadMoreBtn = document.getElementById('load-more-btn');
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => renderPage(true));
@@ -147,6 +184,7 @@ function renderPage(showAll = false) {
     render(app, `<p class="p-4 text-red-400">No se pudo cargar la información de los cortometrajes.</p>`);
     return;
   }
+  
   allFilms = data.films;
   filteredFilms = [...allFilms];
   renderPage();
